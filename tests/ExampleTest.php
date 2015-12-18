@@ -3,6 +3,7 @@
 
 class ExampleTest extends TestCase
 {
+
     /**
      * A basic functional test example.
      *
@@ -11,6 +12,6 @@ class ExampleTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+            ->seeStatusCode(200);
     }
 }
