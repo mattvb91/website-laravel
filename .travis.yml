@@ -11,6 +11,7 @@ before_script:
   - composer install --prefer-source --no-interaction --dev
   - mv .env.example .env
   - php artisan key:generate
+  - touch storage/database.sqlite
   - php artisan migrate
 
 # Commands you want to run that will verify your build.
