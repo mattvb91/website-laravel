@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 /**
- * Class PagesController
- * @package App\Http\Controllers
+ * Class PagesController.
  */
 class PagesController extends Controller
 {
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
