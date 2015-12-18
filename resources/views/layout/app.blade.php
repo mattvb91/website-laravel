@@ -9,7 +9,8 @@
 </head>
 <body>
     <div class="container">
-        @yield('body')
+        @include('errors.list')
+        @yield('content')
     </div>
 </body>
 </html>

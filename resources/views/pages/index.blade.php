@@ -1,5 +1,5 @@
 @extends('layout.app')
 
-@section('body')
+@section('content')
     <h1>Index</h1>
-@stop
+@endsection
