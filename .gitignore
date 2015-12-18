@@ -6,6 +6,7 @@ Homestead.json
 *.iml
 .idea/
 
+storage/database.sqlite
 
 ### Laravel template
 /bootstrap/compiled.php
