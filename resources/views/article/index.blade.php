@@ -5,21 +5,25 @@
 
     <hr/>
 
-    @foreach($entities as $entity)
-        <?php /* @var $entity \App\Models\Article */ ?>
+    @foreach($articles as $article)
+        <?php /* @var $article \App\Models\Article */ ?>
         <article>
             <h2>
-                <a href="{{ url('/article', $entity->getKey()) }}">
-                    {{ $entity->getTitle() }}
+                <a href="{{ url('/article', $article->getKey()) }}">
+                    {{ $article->getTitle() }}
                 </a>
             </h2>
 
             <div class="body">
-                {{ $entity->getBody() }}
+                <p>{{ $article->getPublishedAt()->diffForHumans() }} by: {{ $article->user->getName() }}</p>
+
+                <p>
+                    {{ $article->getBody() }}
+                </p>
             </div>
         </article>
     @endforeach
 
-    {!! $entities->render() !!}
+    {!! $articles->render() !!}
 
 @endsection

@@ -32,10 +32,15 @@ class Article extends Model
     const UNPUBLISHED = 0;
     const PUBLISHED   = 1;
 
-    private static $status = [
+    private static $statuses = [
         self::UNPUBLISHED => 'Unpublished',
         self::PUBLISHED   => 'Published'
     ];
+
+    public static function getStatuses()
+    {
+        return self::$statuses;
+    }
 
     /**
      * Article belongs to a user.
@@ -116,6 +121,6 @@ class Article extends Model
      */
     public function getStatus() : string
     {
-        return self::$status[$this->getPublished()];
+        return self::$statuses[$this->getPublished()];
     }
 }
