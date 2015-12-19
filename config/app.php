@@ -146,7 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Illuminate\Html\HtmlServiceProvider::class,
-
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*

@@ -26,8 +26,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/article') }}">Blog</a> </li>
-                        <li><a href="">About</a> </li>
+                        <li><a href="{{ url('/article') }}">Blog</a></li>
+                        <li><a href="">About</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -44,6 +44,8 @@
                 </div>
             </div>
         </nav>
+
+        @include('flash::message')
         @include('errors.list')
         @yield('content')
 
@@ -58,5 +60,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+
+    <script>
+        $('#flash-overlay-modal').modal();
+        $('div.alert').not('.alert-important').delay(3000).slideUp();
+    </script>
 </body>
 </html>

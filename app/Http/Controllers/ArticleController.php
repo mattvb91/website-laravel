@@ -48,11 +48,11 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $article = new Article($request->all());
+        Auth::user()->articles()->create($request->all());
 
-        Auth::user()->articles()->save($article);
+        flash()->success('Article has been created!');
 
-        return redirect('/article');
+        return redirect('article');
     }
 
     /**
@@ -89,6 +89,8 @@ class ArticleController extends Controller
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
+
+        flash()->success('Article has been edited!');
 
         return redirect('article/' . $article->getKey());
     }
