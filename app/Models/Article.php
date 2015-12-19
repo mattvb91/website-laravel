@@ -55,6 +55,16 @@ class Article extends Model
     }
 
     /**
+     * Get the tags associated with the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
      * @return string
      */
     public function getTitle()
