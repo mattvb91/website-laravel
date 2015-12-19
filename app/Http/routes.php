@@ -13,6 +13,8 @@
 
 Route::get('/', 'PagesController@index');
 
+Route::resource('article', 'ArticleController');
+
 Route::controllers([
-    'auth'     => 'Auth\AuthController',
+    'auth' => 'Auth\AuthController',
 ]);

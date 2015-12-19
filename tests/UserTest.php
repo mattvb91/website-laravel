@@ -1,14 +1,14 @@
 <?php
 
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testGetUser()
+    public function testFactory()
     {
         factory(User::class, 50)->create();
 
