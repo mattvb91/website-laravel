@@ -21,6 +21,11 @@ abstract class CrudController extends Controller
 
     private $entity;
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     //TODO replace this along with getModelClass to use route binded model instead
     private function getEntity()
     {

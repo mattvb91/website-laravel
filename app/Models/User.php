@@ -10,6 +10,13 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * Class User
+ * @package App\Models
+ *
+ * @property string $email
+ * @property string $name
+ */
 class User extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
@@ -41,4 +48,38 @@ class User extends Model implements
     {
         return $this->hasMany(Article::class, 'user_id');
     }
+
+    /**
+     * @return string
+     */
+    public function getEmail() : string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+
 }
