@@ -90,7 +90,7 @@ class Article extends Model
     /**
      * @param string $published_at
      */
-    public function setPublishedAt($published_at)
+    public function setPublishedAt(string $published_at)
     {
         $this->published_at = $published_at;
     }

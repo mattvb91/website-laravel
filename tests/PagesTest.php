@@ -5,6 +5,6 @@ class PagesTest extends TestCase
 {
     public function testIndex()
     {
-        $this->get('/')->seeStatusCode(200);
+        $this->get('/')->assertResponseOk();
     }
 }
