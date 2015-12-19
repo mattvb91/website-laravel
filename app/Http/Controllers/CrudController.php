@@ -24,7 +24,7 @@ abstract class CrudController extends Controller
     //TODO replace this along with getModelClass to use route binded model instead
     private function getEntity()
     {
-        if(!$this->entity)
+        if (! $this->entity)
         {
             $route = Route::getCurrentRoute();
             /* @var $route \Illuminate\Routing\Route */
@@ -32,7 +32,7 @@ abstract class CrudController extends Controller
             $modelParameter = key($route->parameters());
             $model = $this->getModelClass();
             $id = (int) $route->getParameter($modelParameter);
-            $this->entity = $model::findOrNew($id);
+            $this->entity = $model::findOrFail($id);
         }
 
         return $this->entity;

@@ -9,7 +9,9 @@
         <?php /* @var $entity \App\Models\Article */ ?>
         <article>
             <h2>
-                {{ $entity->getTitle() }}
+                <a href="{{ url('/article', $entity->getKey()) }}">
+                    {{ $entity->getTitle() }}
+                </a>
             </h2>
 
             <div class="body">
