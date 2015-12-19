@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property User $user
+ *
+ * @method static Article published() Scope queries to articles that have been published.
  */
 class Article extends Model
 {
@@ -122,5 +124,15 @@ class Article extends Model
     public function getStatus() : string
     {
         return self::$statuses[$this->getPublished()];
+    }
+
+    /**
+     * Scope queries to articles that have been published.
+     *
+     * @param $query
+     */
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', Carbon::now());
     }
 }

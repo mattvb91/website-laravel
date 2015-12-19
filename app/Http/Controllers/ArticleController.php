@@ -23,7 +23,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::query()->orderBy('id', 'desc')->paginate(15);
+        $articles = Article::published()->orderBy('id', 'desc')->paginate(15);
 
         return view('article.index', compact('articles'));
     }
@@ -44,7 +44,6 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param ArticleRequest|Request $request
-     * @param Article $article
      * @return \Illuminate\Http\Response
      */
     public function store(ArticleRequest $request)
@@ -84,6 +83,7 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param Article $article
+     * @param ArticleRequest $request
      * @return \Illuminate\Http\Response
      */
     public function update(Article $article, ArticleRequest $request)
