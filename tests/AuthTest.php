@@ -35,6 +35,7 @@ class AuthTest extends TestCase
 
     public function testNeedToBeAuthPages()
     {
+        factory(\App\Models\Article::class)->create();
         $article = \App\Models\Article::first();
 
         $this->get('/article/create')
