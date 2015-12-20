@@ -32,7 +32,7 @@ class Article extends Model
     protected $dates = ['published_at'];
 
     const UNPUBLISHED = 0;
-    const PUBLISHED   = 1;
+    const PUBLISHED = 1;
 
     private static $statuses = [
         self::UNPUBLISHED => 'Unpublished',
@@ -144,5 +144,15 @@ class Article extends Model
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());
+    }
+
+    /**
+     * Get list of Tag ids associated with current article.
+     *
+     * @return array
+     */
+    public function getTagListAttribute() : array
+    {
+        return $this->tags->lists('id')->toArray();
     }
 }

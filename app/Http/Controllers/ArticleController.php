@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,8 +37,9 @@ class ArticleController extends Controller
     public function create()
     {
         $description = 'Add Article';
+        $tags = Tag::lists('name', 'id');
 
-        return view('article.form', compact('description'));
+        return view('article.form', compact('description', 'tags'));
     }
 
     /**
@@ -48,7 +50,10 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        Auth::user()->articles()->create($request->all());
+        $article = Auth::user()->articles()->create($request->all());
+        /* @var $article Article */
+
+        $article->tags()->attach($request->input('tag_list'));
 
         flash()->success('Article has been created!');
 
@@ -75,8 +80,9 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $description = 'Edit Article';
+        $tags = Tag::lists('name', 'id');
 
-        return view('article.form', compact('article', 'description'));
+        return view('article.form', compact('article', 'description', 'tags'));
     }
 
     /**
@@ -89,6 +95,8 @@ class ArticleController extends Controller
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
+
+        $article->tags()->sync($request->get('tag_list'));
 
         flash()->success('Article has been edited!');
 

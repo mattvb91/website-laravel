@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+
+    protected $fillable = [
+        'name'
+    ];
+
     public $timestamps = [];
 
     /**
@@ -16,5 +21,13 @@ class Tag extends Model
     public function articles()
     {
         return $this->belongsToMany(Article::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->name;
     }
 }
