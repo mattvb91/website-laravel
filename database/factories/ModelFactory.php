@@ -31,3 +31,10 @@ $factory->define(\App\Models\Article::class, function (\Faker\Generator $faker)
         'published'    => $faker->numberBetween(0, 1)
     ];
 });
+
+$factory->define(\App\Models\Tag::class, function(\Faker\Generator $faker)
+{
+    return [
+      'name' => str_random(6),
+    ];
+});
