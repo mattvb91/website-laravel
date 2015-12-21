@@ -14,4 +14,7 @@ storage/database.sqlite
 .env.php
 .env
 
+/public/build
+/public/css
+/public/js
 

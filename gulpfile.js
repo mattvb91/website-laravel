@@ -12,5 +12,19 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.styles(
+        [
+            'sticky-footer.css',
+            'bootstrap.css'
+        ]);
+
+    mix.scripts(
+        [
+            'bootstrap.js',
+            'jquery-2.1.4.js',
+            'select2.js'
+        ]
+    );
+
+    mix.version(['js/all.js', 'css/all.css']);
 });
