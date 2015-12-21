@@ -20,8 +20,8 @@ elixir(function(mix) {
 
     mix.scripts(
         [
-            'bootstrap.js',
             'jquery-2.1.4.js',
+            'bootstrap.js',
             'select2.js'
         ]
     );

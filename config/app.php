@@ -147,6 +147,7 @@ return [
 
         Illuminate\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class
     ],
 
     /*
