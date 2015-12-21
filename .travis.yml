@@ -13,6 +13,8 @@ before_script:
   - php artisan key:generate
   - touch storage/database.sqlite
   - php artisan migrate
+  - npm install -g gulp
+  - gulp --production
 
 # Commands you want to run that will verify your build.
 script: phpunit
