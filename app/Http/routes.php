@@ -15,6 +15,8 @@ Route::get('/', 'PagesController@index');
 
 Route::resource('article', 'ArticleController');
 
+Route::get('tag/{tag}', 'TagController@show');
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
 ]);

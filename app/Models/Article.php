@@ -143,7 +143,8 @@ class Article extends Model
      */
     public function scopePublished($query)
     {
-        $query->where('published_at', '<=', Carbon::now());
+        $query->where('published_at', '<=', Carbon::now())
+            ->where('published', '=', self::PUBLISHED);
     }
 
     /**
