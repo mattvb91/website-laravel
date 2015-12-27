@@ -6,10 +6,11 @@ use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class RouteServiceProvider extends ServiceProvider
 {
+
     /**
      * This namespace is applied to the controller routes in your routes file.
      *
@@ -22,18 +23,25 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
         parent::boot($router);
 
-        $router->bind('article', function($id){
-            return Article::published()->findOrFail($id);
+        $router->bind('article', function ($id)
+        {
+            if (! Auth::user())
+            {
+                return Article::published()->findOrFail($id);
+            }
+
+            return Article::find($id);
         });
 
-        $router->bind('tag', function($name){
+        $router->bind('tag', function ($name)
+        {
             return Tag::where('name', $name)->firstOrFail();
         });
 
@@ -42,12 +50,13 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function ($router) {
+        $router->group(['namespace' => $this->namespace], function ($router)
+        {
             require app_path('Http/routes.php');
         });
     }

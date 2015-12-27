@@ -7,10 +7,10 @@
 
     @if(isset($article))
         <?php $published = $article->getPublished(); ?>
-        {!! Form::model($article, ['method'=>'PATCH', 'action' => ['ArticleController@update', $article->getKey()]]) !!}
+        {!! Form::model($article, ['method'=>'PATCH', 'action' => ['Admin\ArticleController@update', $article->getKey()]]) !!}
     @else
         <?php $published = App\Models\Article::UNPUBLISHED; ?>
-        {!! Form::open(['url' => 'article']) !!}
+        {!! Form::open(['url' => 'admin/article']) !!}
     @endif
     <div class="form-group">
         {!! Form::label('title', 'Title:') !!}

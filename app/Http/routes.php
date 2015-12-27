@@ -13,10 +13,15 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::resource('article', 'ArticleController');
+Route::get('article/{article}', 'ArticleController@show');
+Route::get('article', 'ArticleController@index');
 
 Route::get('tag/{tag}', 'TagController@show');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
 ]);
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('article', 'Admin\ArticleController');
+});
