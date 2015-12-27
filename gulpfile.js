@@ -16,7 +16,8 @@ elixir(function (mix) {
         [
             'sticky-footer.css',
             'bootstrap.css',
-            'font-awesome.css'
+            'font-awesome.css',
+            'select2.css',
         ]);
 
     mix.scripts(
