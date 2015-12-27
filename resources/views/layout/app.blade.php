@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Mavon.ie</title>
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet"/>
+    @yield('header')
 </head>
 <body>
     <div class="container">

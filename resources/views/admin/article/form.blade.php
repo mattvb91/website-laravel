@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header')
+    <link href="/css/summernote.css" rel="stylesheet">
+@endsection
+
 @section('content')
     <h1>{{ $description }}</h1>
     <hr/>
@@ -19,7 +23,7 @@
 
     <div class="form-group">
         {!! Form::label('body', 'Body:') !!}
-        {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+        <textarea id="summernote" name="body"></textarea>
     </div>
 
     <div class="form-group">
@@ -47,9 +51,24 @@
 @endsection
 
 @section('footer')
+    <script src="/js/summernote.js"></script>
+
     <script>
         $('#tag_list').select2({
             placeholder: 'Choose a tag',
         });
+
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                        height: 300,
+                        focus: true
+                    }
+            );
+
+            @if(isset($article))
+                $('#summernote').summernote('code', '{!! $article->getBody() !!}');
+            @endif
+        });
+
     </script>
 @endsection

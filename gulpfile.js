@@ -11,11 +11,12 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
+elixir(function (mix) {
     mix.styles(
         [
             'sticky-footer.css',
-            'bootstrap.css'
+            'bootstrap.css',
+            'font-awesome.css'
         ]);
 
     mix.scripts(
@@ -27,4 +28,10 @@ elixir(function(mix) {
     );
 
     mix.version(['js/all.js', 'css/all.css']);
+});
+
+elixir(function (mix) {
+    mix.styles(['summernote.css'], 'public/css/summernote.css');
+    mix.scripts('summernote.js', 'public/js/summernote.js');
+    mix.copy('resources/assets/fonts', 'public/build/fonts');
 });
