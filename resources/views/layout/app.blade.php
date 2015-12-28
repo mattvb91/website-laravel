@@ -8,9 +8,15 @@
 </head>
 <body>
     <div class="container">
+
         @include('partials.nav')
+
+        {!! Breadcrumbs::renderIfExists() !!}
+
         @include('flash::message')
+
         @include('errors.list')
+
         @yield('content')
 
         <footer class="footer">

@@ -11,17 +11,19 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
-Route::get('article/{article}', 'ArticleController@show');
-Route::get('article', 'ArticleController@index');
+Route::get('article/{article}', ['as' => 'article', 'uses' => 'ArticleController@show']);
+Route::get('article', ['as' => 'blog', 'uses' => 'ArticleController@index']);
 
 Route::get('tag/{tag}', 'TagController@show');
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-]);
+// Authentication routes...
+Route::get('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogout']);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function ()
+{
     Route::resource('article', 'Admin\ArticleController');
 });
