@@ -18,11 +18,13 @@
                 <li><a href="">About</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{{ url('/article', [$latest]) }}">Latest: {{ $latest->getTitle() }}</a>
-                </li>
-            </ul>
+            @if($latest)
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{{ url('/article', [$latest]) }}">Latest: {{ $latest->getTitle() }}</a>
+                    </li>
+                </ul>
+            @endif
 
             @if (!Auth::guest())
                 <ul class="nav navbar-nav navbar-right">

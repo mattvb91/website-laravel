@@ -30,7 +30,7 @@ class AuthTest extends TestCase
 
         $user = factory(User::class)->create(['password' => bcrypt($password)]);
         $this->post('/auth/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
-            ->see('<title>Redirecting to http://localhost</title>');
+            ->see('<title>Redirecting to http://localhost/admin/article</title>');
     }
 
     public function testNeedToBeAuthPages()
@@ -38,10 +38,10 @@ class AuthTest extends TestCase
         factory(\App\Models\Article::class)->create();
         $article = \App\Models\Article::first();
 
-        $this->get('/article/create')
+        $this->get('/admin/article/create')
             ->see('Redirecting to http://localhost/auth/login');
 
-        $this->get('/article/' . $article->getKey() . '/edit')
+        $this->get('/admin/article/' . $article->getKey() . '/edit')
             ->see('Redirecting to http://localhost/auth/login');
     }
 }

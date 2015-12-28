@@ -24,6 +24,8 @@
         </article>
     @endforeach
 
-    {!! $articles->render() !!}
+    @if($articles->count())
+        {!! $articles->render() !!}
+    @endif
 
 @endsection
