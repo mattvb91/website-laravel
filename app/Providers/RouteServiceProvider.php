@@ -30,14 +30,14 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot($router);
 
-        $router->bind('article', function ($id)
+        $router->bind('article', function ($slug)
         {
             if (! Auth::user())
             {
-                return Article::published()->findOrFail($id);
+                return Article::published()->findBySlugOrIdOrFail($slug);
             }
 
-            return Article::find($id);
+            return Article::findBySlugOrIdOrFail($slug);
         });
 
         $router->bind('tag', function ($name)

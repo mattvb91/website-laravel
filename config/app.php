@@ -149,6 +149,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
     ],
 
     /*
