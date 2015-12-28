@@ -28,7 +28,7 @@ $factory->define(\App\Models\Article::class, function (\Faker\Generator $faker)
         'title'        => implode(' ', $faker->words),
         'body'         => $faker->text,
         'published_at' => $faker->dateTime,
-        'published'    => $faker->numberBetween(0, 1)
+        'published'    => 1
     ];
 });
 
