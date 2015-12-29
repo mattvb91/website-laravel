@@ -16,7 +16,8 @@ Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 Route::get('article/{article}', ['as' => 'article', 'uses' => 'ArticleController@show']);
 Route::get('article', ['as' => 'blog', 'uses' => 'ArticleController@index']);
 
-Route::get('tag/{tag}', 'TagController@show');
+Route::get('tag', ['as' => 'tags', 'uses' => 'TagController@index']);
+Route::get('tag/{tag}', ['as' => 'tag', 'uses' => 'TagController@show']);
 
 // Authentication routes...
 Route::get('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogin']);

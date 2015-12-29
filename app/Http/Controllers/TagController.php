@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class TagController extends Controller
 {
+    public function index()
+    {
+        $tags = Tag::all();
+
+        return view('tag.index', compact('tags'));
+    }
 
     public function show(Tag $tag)
     {
