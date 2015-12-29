@@ -9,7 +9,7 @@
         <?php /* @var $article \App\Models\Article */ ?>
         <article>
             <h2>
-                <a href="{{ url('/article', $article->getKey()) }}">
+                <a href="{{ url('/article', $article->getSlug()) }}">
                     {{ $article->getTitle() }}
                 </a>
             </h2>

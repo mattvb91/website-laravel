@@ -46,7 +46,7 @@ class ArticlesTest extends TestCase
         factory(Article::class)->create();
 
         $article = Article::first();
-        $this->get('/article/' . $article->getKey())
+        $this->get('/article/' . $article->getSlug())
             ->seeStatusCode(200)
             ->see($article->getTitle());
     }

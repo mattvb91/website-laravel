@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -14,8 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static Article published() Scope queries to articles that have been published.
  */
-class Article extends Model
+class Article extends Model implements SluggableInterface
 {
+
+    use SluggableTrait;
 
     protected $fillable = [
         'title',
@@ -27,6 +31,13 @@ class Article extends Model
     protected $guarded = [
         'id',
         'user_id'
+    ];
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+        'unique'     => true,
+        'on_update'  => true,
     ];
 
     protected $dates = ['published_at'];
@@ -145,6 +156,17 @@ class Article extends Model
     {
         $query->where('published_at', '<=', Carbon::now())
             ->where('published', '=', self::PUBLISHED);
+    }
+
+    /**
+     * Scope queries to the slug provided.
+     *
+     * @param $query
+     * @param $slug
+     */
+    public function scopeSlug($query, $slug)
+    {
+        $query->where('slug', '=', $slug);
     }
 
     /**
