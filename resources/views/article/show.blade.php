@@ -3,8 +3,8 @@
 @section('content')
     <h1>{{ $article->getTitle() }}</h1>
     <hr/>
-    <article>
-        <p>{!! $article->getBody() !!}</p>
+    <article class="article-body">
+        {!! $article->getBody() !!}
     </article>
 
     @unless($article->tags->isEmpty())
@@ -15,4 +15,6 @@
             @endforeach
         </ul>
     @endunless
+
+    @include('partials.disqus')
 @endsection

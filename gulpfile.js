@@ -18,6 +18,7 @@ elixir(function (mix) {
             'bootstrap.css',
             'font-awesome.css',
             'select2.css',
+            'custom.css',
         ]);
 
     mix.scripts(
