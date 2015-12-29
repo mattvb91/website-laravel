@@ -5,6 +5,7 @@
 
     <hr/>
 
+    <a href="{{ url('/admin/article/create') }}" class="btn btn-primary pull-right">Create Article</a>
     <table class="table table-bordered">
         <thead>
         <th>Title</th>

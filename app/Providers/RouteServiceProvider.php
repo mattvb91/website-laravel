@@ -42,7 +42,13 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->bind('tag', function ($name)
         {
-            return Tag::where('name', $name)->firstOrFail();
+            //TODO this isnt the neatest, cant clean up a bit.
+            if(!$res = Tag::find($name))
+            {
+                $res = Tag::where('name', $name)->firstOrFail();
+            }
+
+            return $res;
         });
 
     }

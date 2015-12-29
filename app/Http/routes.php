@@ -27,4 +27,5 @@ Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLog
 Route::group(['prefix' => 'admin'], function ()
 {
     Route::resource('article', 'Admin\ArticleController');
+    Route::resource('tag', 'Admin\TagController');
 });
