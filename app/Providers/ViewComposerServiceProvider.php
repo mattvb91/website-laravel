@@ -48,7 +48,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         view()->composer('partials.sidebar', function ($view)
         {
-            $view->with('latest', Article::published()->latest(5)->get());
+            $view->with('latest', Article::published()->orderBy('id', 'desc')->take(5)->get());
             $view->with('tags', Tag::all());
         });
     }

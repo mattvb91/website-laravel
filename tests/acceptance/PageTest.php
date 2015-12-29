@@ -1,8 +1,12 @@
 <?php
 
+namespace Test\Acceptance;
 
-class PagesTest extends TestCase
+use Test\TestCase;
+
+class PageTest extends TestCase
 {
+
     public function testIndex()
     {
         $this->get('/')->assertResponseOk();
