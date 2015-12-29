@@ -25,15 +25,11 @@ class AuthTest extends TestCase
 
     public function testFormSubmitAuthSuccess()
     {
-        $password = str_random(6);
-
         $this->get('/auth/login')
             ->seeStatusCode(200)
             ->see('Login');
 
-        $user = factory(User::class)->create(['password' => bcrypt($password)]);
-        $this->post('/auth/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
-            ->see('<title>Redirecting to http://localhost/admin/article</title>');
+        $this->createUserAndLogin();
     }
 
     public function testNeedToBeAuthPages()
@@ -46,5 +42,14 @@ class AuthTest extends TestCase
 
         $this->get('/admin/article/' . $article->getKey() . '/edit')
             ->see('Redirecting to http://localhost/auth/login');
+    }
+
+    private function createUserAndLogin()
+    {
+        $password = str_random(6);
+
+        $user = factory(User::class)->create(['password' => bcrypt($password)]);
+        $this->post('/auth/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
+            ->see('<title>Redirecting to http://localhost/admin/article</title>');
     }
 }
