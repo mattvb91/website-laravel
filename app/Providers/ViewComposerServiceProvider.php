@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -15,7 +16,8 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->ComposeNavigation();
+        $this->composeNavigation();
+        $this->composeSidebar();
     }
 
     /**
@@ -29,13 +31,25 @@ class ViewComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Compose the naviation bar.
+     * Compose the navigation bar.
      */
-    private function ComposeNavigation()
+    private function composeNavigation()
     {
         view()->composer('partials.nav', function ($view)
         {
             $view->with('latest', Article::latest()->first());
+        });
+    }
+
+    /**
+     * Compose the sidebar.
+     */
+    private function composeSidebar()
+    {
+        view()->composer('partials.sidebar', function ($view)
+        {
+            $view->with('latest', Article::published()->latest(5)->get());
+            $view->with('tags', Tag::all());
         });
     }
 }

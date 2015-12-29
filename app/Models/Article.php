@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  *
  * @method static Article published() Scope queries to articles that have been published.
+ * @method static Article slug($slug) Scope queries to article containing slug.
  */
 class Article extends Model implements SluggableInterface
 {

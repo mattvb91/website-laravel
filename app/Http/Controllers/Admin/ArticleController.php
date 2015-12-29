@@ -87,7 +87,7 @@ class ArticleController extends \App\Http\Controllers\ArticleController
     {
         $article->update($request->all());
 
-        if($tags = $request->get('tag_list'))
+        if ($tags = $request->get('tag_list'))
         {
             $article->tags()->sync($tags);
         }

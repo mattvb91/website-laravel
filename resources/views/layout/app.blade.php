@@ -17,7 +17,12 @@
 
         @include('errors.list')
 
-        @yield('content')
+        <div class="col-md-9">
+            @yield('content')
+        </div>
+        <div class="col-md-3">
+            @include('partials.sidebar')
+        </div>
 
         <footer class="footer">
             <hr/>
