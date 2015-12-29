@@ -1,37 +1,24 @@
 <?php
 
+namespace Test\Acceptance;
 
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Test\TestCase;
 
-class ArticlesTest extends TestCase
+class ArticleTest extends TestCase
 {
 
     use DatabaseTransactions;
 
-    public function testFactory()
+    public function setUp()
     {
-        factory(Article::class)->create();
-
-        $article = Article::first();
-
-        $this->assertInstanceOf(Article::class, $article);
-        $this->assertTrue($article->exists());
-    }
-
-    public function testGetUser()
-    {
-        factory(Article::class)->create();
-
-        $article = Article::first();
-
-        $this->assertInstanceOf(\App\Models\User::class, $article->user);
+        parent::setUp();
+        factory(Article::class, 20)->create();
     }
 
     public function testIndex()
     {
-        factory(Article::class, 20)->create();
-
         $this->get('/article')
             ->seeStatusCode(200)
             ->see('Articles');
@@ -43,8 +30,6 @@ class ArticlesTest extends TestCase
 
     public function testShow()
     {
-        factory(Article::class)->create();
-
         $article = Article::first();
         $this->get('/article/' . $article->getSlug())
             ->seeStatusCode(200)

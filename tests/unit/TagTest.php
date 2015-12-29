@@ -1,7 +1,11 @@
 <?php
+
+namespace Test\Unit;
+
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Test\TestCase;
 
 /**
  * Class TagsTest
@@ -23,11 +27,13 @@ class TagsTest extends TestCase
     {
         $tags = factory(Tag::class, 5)->create();
 
-        foreach($tags as $tag){
+        foreach ($tags as $tag)
+        {
             $res[] = $tag->getKey();
         }
 
-        $article = factory(Article::class)->create(); /* @var $article Article */
+        $article = factory(Article::class)->create();
+        /* @var $article Article */
 
         $article->tags()->attach($res);
         $this->assertNotEmpty($article->tags->toArray());

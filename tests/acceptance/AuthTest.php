@@ -1,8 +1,11 @@
 <?php
 
+namespace Test\Acceptance;
+
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Session;
+use Test\TestCase;
 
 class AuthTest extends TestCase
 {

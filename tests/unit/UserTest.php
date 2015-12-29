@@ -1,11 +1,14 @@
 <?php
 
+namespace Test\Unit;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Test\TestCase;
 
 class UserTest extends TestCase
 {
+
     use DatabaseTransactions;
 
     public function testFactory()
