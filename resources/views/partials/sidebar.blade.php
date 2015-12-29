@@ -21,7 +21,7 @@
         <ul class="list-inline">
             @foreach($tags as $tag)
                 <li>
-                    <a href="{{ url('tag', $tag->getName()) }}">{{ $tag->getName() }}</a>
+                    <a href="{{ url('tag', $tag->getName()) }}">{{ $tag->getName() }}</a> ({{ $tag->articles()->count() }})
                 </li>
             @endforeach
         </ul>
