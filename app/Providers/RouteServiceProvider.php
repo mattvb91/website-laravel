@@ -34,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
         {
             if (! Auth::user())
             {
-                return Article::published()->findBySlugOrIdOrFail($slug);
+                return Article::published()->slug($slug)->first();
             }
 
             return Article::findBySlugOrIdOrFail($slug);

@@ -37,6 +37,7 @@ class Article extends Model implements SluggableInterface
         'build_from' => 'title',
         'save_to'    => 'slug',
         'unique'     => true,
+        'on_update'  => true,
     ];
 
     protected $dates = ['published_at'];
@@ -155,6 +156,17 @@ class Article extends Model implements SluggableInterface
     {
         $query->where('published_at', '<=', Carbon::now())
             ->where('published', '=', self::PUBLISHED);
+    }
+
+    /**
+     * Scope queries to the slug provided.
+     *
+     * @param $query
+     * @param $slug
+     */
+    public function scopeSlug($query, $slug)
+    {
+        $query->where('slug', '=', $slug);
     }
 
     /**

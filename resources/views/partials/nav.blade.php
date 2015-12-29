@@ -21,7 +21,7 @@
             @if($latest)
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ url('/article', [$latest]) }}">Latest: {{ $latest->getTitle() }}</a>
+                        <a href="{{ url('/article', [$latest->getSlug()]) }}">Latest: {{ $latest->getTitle() }}</a>
                     </li>
                 </ul>
             @endif
