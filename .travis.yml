@@ -5,6 +5,9 @@ php:
 env:
   - DB=sqlite
 
+before_install:
+  - travis_retry npm install
+
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
