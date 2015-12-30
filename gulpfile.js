@@ -25,7 +25,8 @@ elixir(function (mix) {
         [
             'jquery-2.1.4.js',
             'bootstrap.js',
-            'select2.js'
+            'select2.js',
+            'include.js',
         ]
     );
 
@@ -33,7 +34,13 @@ elixir(function (mix) {
 });
 
 elixir(function (mix) {
+    mix.styles(['octicons.css'], 'public/css/octicons.css');
+    mix.styles(['github-activity.css'], 'public/css/github-activity.css');
     mix.styles(['summernote.css'], 'public/css/summernote.css');
+
+    mix.scripts('mustache.js', 'public/js/mustache.js');
     mix.scripts('summernote.js', 'public/js/summernote.js');
+    mix.scripts('github-activity.js', 'public/js/github-activity.js');
+
     mix.copy('resources/assets/fonts', 'public/build/fonts');
 });

@@ -32,11 +32,6 @@
         </footer>
     </div>
     <script src="{{ elixir('js/all.js') }}"></script>
-
-    <script>
-        $('#flash-overlay-modal').modal();
-        $('div.alert').not('.alert-important').delay(3000).slideUp();
-    </script>
     @yield('footer')
 </body>
 </html>
