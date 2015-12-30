@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 
 
 /**
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model implements SluggableInterface
 {
 
-    use SluggableTrait;
+    use SluggableTrait, Eloquence;
 
     protected $fillable = [
         'title',
@@ -39,6 +40,11 @@ class Article extends Model implements SluggableInterface
         'save_to'    => 'slug',
         'unique'     => true,
         'on_update'  => true,
+    ];
+
+    protected $searchableColumns = [
+        'title',
+        'body',
     ];
 
     protected $dates = ['published_at'];

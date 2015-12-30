@@ -24,6 +24,8 @@ Route::get('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogi
 Route::post('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogout']);
 
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+
 Route::group(['prefix' => 'admin'], function ()
 {
     Route::resource('article', 'Admin\ArticleController');
