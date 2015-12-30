@@ -18,14 +18,14 @@
                 <p>{{ $article->getPublishedAt()->diffForHumans() }} by: {{ $article->user->getName() }}</p>
 
                 <p>
-                    {{ $article->getBody() }}
+                    {!! $article->getBody() !!}
                 </p>
             </div>
         </article>
     @endforeach
 
     @if($articles->count())
-        {!! $articles->render() !!}
+        {!! $articles->appends(Request::only('term'))->render() !!}
     @endif
 
 @endsection

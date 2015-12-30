@@ -33,3 +33,10 @@ Breadcrumbs::register('tag', function ($breadcrumbs, $tag)
     $breadcrumbs->parent('tags');
     $breadcrumbs->push($tag->getName());
 });
+
+// Home > Search
+Breadcrumbs::register('search', function ($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Search', route('search'));
+});

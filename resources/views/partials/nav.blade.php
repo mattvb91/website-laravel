@@ -18,6 +18,7 @@
                 <li><a href="">About</a></li>
             </ul>
 
+
             @if($latest)
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -25,6 +26,19 @@
                     </li>
                 </ul>
             @endif
+
+            <div class="col-sm-3 col-md-3 pull-right">
+                {!! Form::open(['method'=>'GET', 'url'=>'search', 'class'=>'navbar-form']) !!}
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ Request::get('term') }}" placeholder="Search" name="term" id="term">
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             @if (!Auth::guest())
                 <ul class="nav navbar-nav navbar-right">

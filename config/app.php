@@ -150,6 +150,7 @@ return [
         App\Providers\ViewComposerServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Sofa\Eloquence\ServiceProvider::class,
     ],
 
     /*
