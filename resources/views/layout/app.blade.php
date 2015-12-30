@@ -24,11 +24,8 @@
             @include('partials.sidebar')
         </div>
 
-        <footer class="footer">
-            <hr/>
-            <div class="container">
-                <p class="text-muted"></p>
-            </div>
+        <footer>
+
         </footer>
     </div>
     <script src="{{ elixir('js/all.js') }}"></script>

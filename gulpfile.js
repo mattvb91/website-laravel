@@ -14,7 +14,6 @@ var elixir = require('laravel-elixir');
 elixir(function (mix) {
     mix.styles(
         [
-            'sticky-footer.css',
             'bootstrap.css',
             'font-awesome.css',
             'select2.css',
