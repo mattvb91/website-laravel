@@ -32,9 +32,22 @@ $factory->define(\App\Models\Article::class, function (\Faker\Generator $faker)
     ];
 });
 
-$factory->define(\App\Models\Tag::class, function(\Faker\Generator $faker)
+$factory->define(\App\Models\Tag::class, function (\Faker\Generator $faker)
 {
     return [
-      'name' => str_random(6),
+        'name' => str_random(6),
+    ];
+});
+
+
+$factory->define(\App\Models\Page::class, function (\Faker\Generator $faker)
+{
+    return [
+        'type'        => \App\Models\Page::TYPE_HOMEPAGE,
+        'name'        => $faker->word,
+        'keywords'    => $faker->word,
+        'url'         => '/',
+        'nav_enabled' => \App\Models\Page::NAVBAR_DISABLED,
+        'body'        => $faker->text(),
     ];
 });

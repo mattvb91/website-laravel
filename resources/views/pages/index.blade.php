@@ -8,6 +8,6 @@
 @endsection
 
 @section('content')
-    <h1>Index</h1>
+    {!! \App\Models\Page::getPageContent(\App\Models\Page::TYPE_HOMEPAGE) !!}
     <div id="feed"></div>
 @endsection

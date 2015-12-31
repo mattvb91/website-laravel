@@ -2,6 +2,7 @@
 
 namespace Test\Acceptance;
 
+use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Test\TestCase;
@@ -18,6 +19,7 @@ class TagTest extends TestCase
 
     public function testSideBar()
     {
+        factory(Page::class)->create();
         $tag = Tag::first();
 
         $this->get('/')->seeStatusCode(200)

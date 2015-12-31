@@ -26,8 +26,11 @@ Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLog
 
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
-Route::group(['prefix' => 'admin'], function ()
+//TODO for later on it would be nice to automatically be able to route to custom pages
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function ()
 {
     Route::resource('article', 'Admin\ArticleController');
     Route::resource('tag', 'Admin\TagController');
+    Route::resource('page', 'Admin\PageController');
 });
