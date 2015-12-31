@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -49,6 +50,11 @@ class RouteServiceProvider extends ServiceProvider
             }
 
             return $res;
+        });
+
+        $router->bind('page', function($id)
+        {
+            return Page::find($id);
         });
 
     }

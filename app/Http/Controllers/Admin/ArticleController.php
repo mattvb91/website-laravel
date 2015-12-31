@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 class ArticleController extends \App\Http\Controllers\ArticleController
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Override index here because we want every article in the system
      *
