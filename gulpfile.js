@@ -42,4 +42,6 @@ elixir(function (mix) {
     mix.scripts('github-activity.js', 'public/js/github-activity.js');
 
     mix.copy('resources/assets/fonts', 'public/build/fonts');
+    mix.copy('resources/assets/img', 'public/build/img');
+
 });
