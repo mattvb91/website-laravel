@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mavon.ie</title>
+    <title>Mavon.ie | {{ $pageTitle ??  'PHP Contractor - Ireland' }}</title>
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet"/>
     @yield('header')
 </head>
