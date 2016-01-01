@@ -18,8 +18,11 @@
                 <p>{{ $article->getPublishedAt()->diffForHumans() }} by: {{ $article->user->getName() }}</p>
 
                 <p>
-                    {!! $article->getBody() !!}
+                    {!! \App\Helpers\Html::trim($article->getBody(), 400) !!}
                 </p>
+                <a href="{{ url('/article', $article->getSlug()) }}">
+                    <h4>Continue reading</h4>
+                </a>
             </div>
         </article>
     @endforeach

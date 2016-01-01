@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::published()->orderBy('id', 'desc')->paginate(15);
+        $articles = Article::published()->orderBy('id', 'desc')->paginate(5);
 
         return view('article.index', compact('articles'));
     }
