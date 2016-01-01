@@ -68,7 +68,7 @@
             );
 
             @if(isset($article))
-                $('#summernote').summernote('code', '{!! $article->getBody() !!}');
+                $('#summernote').summernote('code', {!! json_encode($article->getBody()) !!});
             @endif
         });
 
