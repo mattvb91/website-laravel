@@ -40,10 +40,10 @@
         </h4>
     </div>
     <div class="panel-body">
-        <ul class="list-inline">
+        <ul class="tags">
             @foreach($tags as $tag)
                 <li>
-                    <a href="{{ url('tag', $tag->getName()) }}">{{ $tag->getName() }}</a> ({{ $tag->articles()->count() }})
+                    <a class="tag" href="{{ url('tag', $tag->getName()) }}">{{ $tag->getName() }} ({{ $tag->articles()->count() }})</a>
                 </li>
             @endforeach
         </ul>
