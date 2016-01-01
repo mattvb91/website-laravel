@@ -20,10 +20,17 @@
                 <p>
                     {!! \App\Helpers\Html::trim($article->getBody(), 400) !!}
                 </p>
-                <a href="{{ url('/article', $article->getSlug()) }}">
-                    <h4>Continue reading</h4>
-                </a>
             </div>
+            @unless($article->tags->isEmpty())
+                <ul class="tags">
+                    @foreach($article->tags as $tag)
+                        <li><a href="{{ url('tag', $tag->getName()) }}" class="tag">{{ $tag->getName() }}</a></li>
+                    @endforeach
+                </ul>
+            @endunless
+            <a href="{{ url('/article', $article->getSlug()) }}">
+                <h4>Continue reading</h4>
+            </a>
             <hr/>
         </article>
     @endforeach

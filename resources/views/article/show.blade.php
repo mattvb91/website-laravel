@@ -9,10 +9,9 @@
     </article>
 
     @unless($article->tags->isEmpty())
-        <h5>Tags:</h5>
-        <ul>
+        <ul class="tags">
             @foreach($article->tags as $tag)
-                <li>{{ $tag->getName() }}</li>
+                <li><a href="{{ url('tag', $tag->getName()) }}" class="tag">{{ $tag->getName() }}</a></li>
             @endforeach
         </ul>
     @endunless
