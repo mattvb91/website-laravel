@@ -4,6 +4,7 @@
     <h1>{{ $article->getTitle() }}</h1>
     <hr/>
     <article class="article-body">
+        <p>{{ $article->getPublishedAt()->diffForHumans() }} by: {{ $article->user->getName() }}</p>
         {!! $article->getBody() !!}
     </article>
 

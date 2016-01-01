@@ -24,6 +24,7 @@
                     <h4>Continue reading</h4>
                 </a>
             </div>
+            <hr/>
         </article>
     @endforeach
 
