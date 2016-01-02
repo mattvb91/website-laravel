@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -51,14 +52,16 @@ class BackupDB extends Command
 
         //Send email.
         $user = User::first();
-        Mail::send(['email' => 'db'], [], function ($mail) use ($user, $zipPath)
+        if(Mail::send(['email' => 'db'], [], function ($mail) use ($user, $zipPath)
         {
             $mail->from(env('MAIL_ADDRESS'), 'Mavon.ie System');
-            $mail->to($user->getEmail())->subject('DB Backup');
+            $mail->to($user->getEmail())->subject('Mavon.ie DB Backup ' . Carbon::now());
             $mail->attach($zipPath);
-        });
+        })){
+            echo "Backup sent!" . PHP_EOL;
+        };
 
         //Delete zip when finished.
-        unset($zipPath);
+        unlink($zipPath);
     }
 }
