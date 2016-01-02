@@ -5,7 +5,9 @@
     <title>Mavon.ie | {{ $pageTitle ??  'PHP Contractor - Ireland' }}</title>
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet"/>
     @yield('header')
-    @include('partials.analytics')
+    @if(env('APP_ENV') == 'production')
+        @include('partials.analytics')
+    @endif
 </head>
 <body>
     <div class="container">
