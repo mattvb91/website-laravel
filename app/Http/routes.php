@@ -26,6 +26,12 @@ Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLog
 
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
+Route::group(['prefix' => 'api'], function ()
+{
+    Route::post('image', ['middleware' => 'auth', 'uses' => 'Api\ImageController@store']);
+    Route::get('image/{image}', 'Api\ImageController@view');
+});
+
 //TODO for later on it would be nice to automatically be able to route to custom pages
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function ()
