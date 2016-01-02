@@ -24,7 +24,7 @@
             @unless($article->tags->isEmpty())
                 <ul class="tags">
                     @foreach($article->tags as $tag)
-                        <li><a href="{{ url('tag', $tag->getName()) }}" class="tag">{{ $tag->getName() }}</a></li>
+                        <li><a href="{{ url('tag', $tag->getSlug()) }}" class="tag">{{ $tag->getName() }}</a></li>
                     @endforeach
                 </ul>
             @endunless

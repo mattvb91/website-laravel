@@ -43,7 +43,7 @@
         <ul class="tags">
             @foreach($tags as $tag)
                 <li>
-                    <a class="tag" href="{{ url('tag', $tag->getName()) }}">{{ $tag->getName() }} ({{ $tag->articles()->count() }})</a>
+                    <a class="tag" href="{{ url('tag', $tag->getSlug()) }}">{{ $tag->getName() }} ({{ $tag->articles()->count() }})</a>
                 </li>
             @endforeach
         </ul>

@@ -41,15 +41,14 @@ class RouteServiceProvider extends ServiceProvider
             return Article::findBySlugOrIdOrFail($slug);
         });
 
-        $router->bind('tag', function ($name)
+        $router->bind('tag', function ($slug)
         {
-            //TODO this isnt the neatest, cant clean up a bit.
-            if(!$res = Tag::find($name))
+            if (! Auth::user())
             {
-                $res = Tag::where('name', $name)->firstOrFail();
+                return Tag::slug($slug)->first();
             }
 
-            return $res;
+            return Tag::findBySlugOrIdOrFail($slug);
         });
 
         $router->bind('page', function($id)
