@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('header')
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex, follow">
 @endsection
 
 @section('content')
