@@ -38,10 +38,10 @@ class AuthTest extends TestCase
         $article = \App\Models\Article::first();
 
         $this->get('/admin/article/create')
-            ->see('Redirecting to http://localhost/auth/login');
+            ->assertResponseStatus(302);
 
         $this->get('/admin/article/' . $article->getKey() . '/edit')
-            ->see('Redirecting to http://localhost/auth/login');
+            ->assertResponseStatus(404);
     }
 
     private function createUserAndLogin()
