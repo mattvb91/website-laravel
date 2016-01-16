@@ -2,6 +2,7 @@
 
 @section('header')
     <link href="/css/summernote.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @endsection
 
 @section('content')
@@ -60,12 +61,39 @@
             tokenSeparators: [','],
         });
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).ready(function () {
             $('#summernote').summernote({
                         height: 300,
-                        focus: true
+                        focus: true,
+                        callbacks: {
+                            onImageUpload: function (files) {
+                                uploadImage(files[0]);
+                            }
+                        }
                     }
             );
+
+            function uploadImage(file) {
+                data = new FormData();
+                data.append("file", file);
+                $.ajax({
+                    data: data,
+                    type: 'POST',
+                    url: '/api/image',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (url) {
+                        $('#summernote').summernote('insertImage', url);
+                    }
+                });
+            }
 
             @if(isset($article))
                 $('#summernote').summernote('code', {!! json_encode($article->getBody()) !!});

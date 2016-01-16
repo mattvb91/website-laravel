@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header')
+    <meta name="robots" content="noindex, follow">
+@endsection
+
 @section('content')
     <h1>Articles</h1>
 

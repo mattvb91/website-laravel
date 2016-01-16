@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header')
+    <meta name="robots" content="noindex">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

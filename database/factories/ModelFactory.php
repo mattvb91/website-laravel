@@ -26,7 +26,7 @@ $factory->define(\App\Models\Article::class, function (\Faker\Generator $faker)
     return [
         'user_id'      => factory(\App\Models\User::class)->create()->getKey(),
         'title'        => implode(' ', $faker->words),
-        'body'         => $faker->text,
+        'body'         => $faker->text(800),
         'published_at' => $faker->dateTime,
         'published'    => 1
     ];

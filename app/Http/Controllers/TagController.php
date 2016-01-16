@@ -17,7 +17,7 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
-        $articles = $tag->articles()->published()->paginate(15);
+        $articles = $tag->articles()->published()->orderBy('id','desc')->paginate(5);
 
         return view('article.index', compact('articles'));
     }
