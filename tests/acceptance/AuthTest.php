@@ -20,7 +20,7 @@ class AuthTest extends TestCase
             ->see('Login');
 
         $this->post('/login', ['email' => 'wrong', 'password' => 'wrong@wrong.com', '_token' => Session::token()])
-            ->see('Redirecting to http://localhost/auth/login');
+            ->see('Redirecting to http://localhost/login');
     }
 
     public function testFormSubmitAuthSuccess()
@@ -41,7 +41,7 @@ class AuthTest extends TestCase
             ->assertResponseStatus(302);
 
         $this->get('/admin/article/' . $article->getKey() . '/edit')
-            ->assertResponseStatus(404);
+            ->assertResponseStatus(302);
     }
 
     private function createUserAndLogin()
