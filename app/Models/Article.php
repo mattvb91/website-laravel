@@ -183,6 +183,6 @@ class Article extends Model implements SluggableInterface
      */
     public function getTagListAttribute() : array
     {
-        return $this->tags->lists('id')->toArray();
+        return $this->tags->pluck('id')->toArray();
     }
 }

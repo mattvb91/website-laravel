@@ -34,7 +34,7 @@ class ArticleController extends \App\Http\Controllers\ArticleController
     public function create()
     {
         $description = 'Add Article';
-        $tags = Tag::lists('name', 'id');
+        $tags = Tag::pluck('name', 'id');
 
         return view('admin.article.form', compact('description', 'tags'));
     }
@@ -66,7 +66,7 @@ class ArticleController extends \App\Http\Controllers\ArticleController
     public function edit(Article $article)
     {
         $description = 'Edit Article';
-        $tags = Tag::lists('name', 'id');
+        $tags = Tag::pluck('name', 'id');
 
         return view('admin.article.form', compact('article', 'description', 'tags'));
     }

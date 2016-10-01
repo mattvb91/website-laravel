@@ -15,17 +15,17 @@ class AuthTest extends TestCase
 
     public function testFormSubmitAuthError()
     {
-        $this->get('/auth/login')
+        $this->get('/login')
             ->seeStatusCode(200)
             ->see('Login');
 
-        $this->post('/auth/login', ['email' => 'wrong', 'password' => 'wrong@wrong.com', '_token' => Session::token()])
+        $this->post('/login', ['email' => 'wrong', 'password' => 'wrong@wrong.com', '_token' => Session::token()])
             ->see('Redirecting to http://localhost/auth/login');
     }
 
     public function testFormSubmitAuthSuccess()
     {
-        $this->get('/auth/login')
+        $this->get('/login')
             ->seeStatusCode(200)
             ->see('Login');
 
@@ -49,7 +49,7 @@ class AuthTest extends TestCase
         $password = str_random(6);
 
         $user = factory(User::class)->create(['password' => bcrypt($password)]);
-        $this->post('/auth/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
+        $this->post('/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
             ->see('<title>Redirecting to http://localhost/admin/article</title>');
     }
 }
