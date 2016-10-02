@@ -5,7 +5,7 @@
     <ul class="list-group">
         @foreach($latest as $article)
             <li class="list-group-item">
-                <a href="{{ url('article', $article->getSlug()) }}">{{ $article->getTitle() }}</a> - {{ $article->getPublishedAt()->diffForHumans() }}
+                <a href="{{ url('article', $article->slug) }}">{{ $article->getTitle() }}</a> - {{ $article->getPublishedAt()->diffForHumans() }}
             </li>
         @endforeach
     </ul>
@@ -43,7 +43,7 @@
         <ul class="tags">
             @foreach($tags as $tag)
                 <li>
-                    <a class="tag" href="{{ url('tag', $tag->getSlug()) }}">{{ $tag->getName() }} ({{ $tag->articles()->count() }})</a>
+                    <a class="tag" href="{{ url('tag', $tag->slug) }}">{{ $tag->getName() }} ({{ $tag->articles()->count() }})</a>
                 </li>
             @endforeach
         </ul>

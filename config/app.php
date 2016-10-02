@@ -150,7 +150,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
-        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
     ],
 

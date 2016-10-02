@@ -13,7 +13,7 @@
         <?php /* @var $article \App\Models\Article */ ?>
         <article>
             <h2>
-                <a href="{{ url('/article', $article->getSlug()) }}">
+                <a href="{{ url('/article', $article->slug) }}">
                     {{ $article->getTitle() }}
                 </a>
             </h2>
@@ -28,11 +28,11 @@
             @unless($article->tags->isEmpty())
                 <ul class="tags">
                     @foreach($article->tags as $tag)
-                        <li><a href="{{ url('tag', $tag->getSlug()) }}" class="tag">{{ $tag->getName() }}</a></li>
+                        <li><a href="{{ url('tag', $tag->slug) }}" class="tag">{{ $tag->getName() }}</a></li>
                     @endforeach
                 </ul>
             @endunless
-            <a href="{{ url('/article', $article->getSlug()) }}">
+            <a href="{{ url('/article', $article->slug) }}">
                 <h4>Continue reading</h4>
             </a>
             <hr/>

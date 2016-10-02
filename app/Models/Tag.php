@@ -2,24 +2,16 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model implements SluggableInterface
+class Tag extends Model
 {
 
-    use SluggableTrait;
+    use Sluggable;
 
     protected $fillable = [
         'name'
-    ];
-
-    protected $sluggable = [
-        'build_from' => 'name',
-        'save_to'    => 'slug',
-        'unique'     => true,
-        'on_update'  => true,
     ];
 
     public $timestamps = [];
@@ -59,5 +51,21 @@ class Tag extends Model implements SluggableInterface
     public function scopeSlug($query, $slug)
     {
         $query->where('slug', '=', $slug);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'build_from' => 'name',
+                'save_to'    => 'slug',
+                'unique'     => true,
+                'on_update'  => true,
+            ]];
     }
 }

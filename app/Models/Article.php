@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 
@@ -18,10 +17,13 @@ use Sofa\Eloquence\Eloquence;
  * @method static Article published() Scope queries to articles that have been published.
  * @method static Article slug($slug) Scope queries to article containing slug.
  */
-class Article extends Model implements SluggableInterface
+class Article extends Model
 {
 
-    use SluggableTrait, Eloquence;
+    use Sluggable, Eloquence
+    {
+        Sluggable::replicate insteadof Eloquence;
+    }
 
     protected $fillable = [
         'title',
@@ -33,13 +35,6 @@ class Article extends Model implements SluggableInterface
     protected $guarded = [
         'id',
         'user_id'
-    ];
-
-    protected $sluggable = [
-        'build_from' => 'title',
-        'save_to'    => 'slug',
-        'unique'     => true,
-        'on_update'  => true,
     ];
 
     protected $searchableColumns = [
@@ -184,5 +179,21 @@ class Article extends Model implements SluggableInterface
     public function getTagListAttribute() : array
     {
         return $this->tags->pluck('id')->toArray();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'build_from' => 'title',
+                'save_to'    => 'slug',
+                'unique'     => true,
+                'on_update'  => true,
+            ]];
     }
 }

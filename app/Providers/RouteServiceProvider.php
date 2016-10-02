@@ -38,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
                 return Article::published()->slug($slug)->first();
             }
 
-            return Article::findBySlugOrIdOrFail($slug);
+            return Article::where('slug', $slug)->first() ?: Article::findOrFail((int)$slug);
         });
 
         Route::bind('tag', function ($slug)
@@ -48,7 +48,7 @@ class RouteServiceProvider extends ServiceProvider
                 return Tag::slug($slug)->first();
             }
 
-            return Tag::findBySlugOrIdOrFail($slug);
+            return Tag::where('slug', $slug)->first() ?: Tag::findOrFail((int)$slug);
         });
 
         Route::bind('page', function($id)
