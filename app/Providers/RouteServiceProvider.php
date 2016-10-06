@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,34 +25,33 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
+        parent::boot();
 
-        $router->bind('article', function ($slug)
+        Route::bind('article', function ($slug)
         {
             if (! Auth::user())
             {
                 return Article::published()->slug($slug)->first();
             }
 
-            return Article::findBySlugOrIdOrFail($slug);
+            return Article::where('slug', $slug)->first() ?: Article::findOrFail((int)$slug);
         });
 
-        $router->bind('tag', function ($slug)
+        Route::bind('tag', function ($slug)
         {
             if (! Auth::user())
             {
                 return Tag::slug($slug)->first();
             }
 
-            return Tag::findBySlugOrIdOrFail($slug);
+            return Tag::where('slug', $slug)->first() ?: Tag::findOrFail((int)$slug);
         });
 
-        $router->bind('page', function($id)
+        Route::bind('page', function($id)
         {
             return Page::find($id);
         });

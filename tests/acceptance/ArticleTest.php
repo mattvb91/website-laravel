@@ -31,7 +31,7 @@ class ArticleTest extends TestCase
     public function testShow()
     {
         $article = Article::first();
-        $this->get('/article/' . $article->getSlug())
+        $this->get('/article/' . $article->slug)
             ->seeStatusCode(200)
             ->see($article->getTitle());
     }

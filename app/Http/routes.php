@@ -11,20 +11,26 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
-Route::get('article/{article}', ['as' => 'article', 'uses' => 'ArticleController@show']);
-Route::get('article', ['as' => 'blog', 'uses' => 'ArticleController@index']);
+Route::group(['middleware' => ['web']], function ()
+{
 
-Route::get('tag', ['as' => 'tags', 'uses' => 'TagController@index']);
-Route::get('tag/{tag}', ['as' => 'tag', 'uses' => 'TagController@show']);
+    Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
-// Authentication routes...
-Route::get('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login', ['as' => 'auth', 'uses' => 'Auth\AuthController@postLogin']);
-Route::get('auth/logout', ['as' => 'auth', 'uses' => 'Auth\AuthController@getLogout']);
+    Route::get('article/{article}', ['as' => 'article', 'uses' => 'ArticleController@show']);
+    Route::get('article', ['as' => 'blog', 'uses' => 'ArticleController@index']);
 
-Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+    Route::get('tag', ['as' => 'tags', 'uses' => 'TagController@index']);
+    Route::get('tag/{tag}', ['as' => 'tag', 'uses' => 'TagController@show']);
+
+    // Authentication routes...
+    Route::get('login', ['as' => 'auth', 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'auth', 'uses' => 'Auth\LoginController@login']);
+    Route::get('logout', ['as' => 'auth', 'uses' => 'Auth\LoginController@logout']);
+
+    Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+
+});
 
 Route::group(['prefix' => 'api'], function ()
 {
@@ -34,7 +40,7 @@ Route::group(['prefix' => 'api'], function ()
 
 //TODO for later on it would be nice to automatically be able to route to custom pages
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function ()
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
 {
     Route::resource('article', 'Admin\ArticleController');
     Route::resource('tag', 'Admin\TagController');

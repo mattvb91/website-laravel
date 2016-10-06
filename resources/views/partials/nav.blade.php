@@ -22,7 +22,7 @@
             @if($latest)
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ url('/article', [$latest->getSlug()]) }}">Latest: {{ $latest->getTitle() }}</a>
+                        <a href="{{ url('/article', [$latest->slug ]) }}">Latest: {{ $latest->getTitle() }}</a>
                     </li>
                 </ul>
             @endif
@@ -47,7 +47,7 @@
                            aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/admin/article') }}">Admin</a></li>
-                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                            <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
