@@ -62,10 +62,10 @@ class Tag extends Model
     {
         return [
             'slug' => [
-                'build_from' => 'name',
-                'save_to'    => 'slug',
-                'unique'     => true,
-                'on_update'  => true,
+                'source'    => 'name',
+                'save_to'   => 'slug',
+                'unique'    => true,
+                'on_update' => true,
             ]];
     }
 }

@@ -190,10 +190,10 @@ class Article extends Model
     {
         return [
             'slug' => [
-                'build_from' => 'title',
-                'save_to'    => 'slug',
-                'unique'     => true,
-                'on_update'  => true,
+                'source'    => 'title',
+                'save_to'   => 'slug',
+                'unique'    => true,
+                'on_update' => true,
             ]];
     }
 }
