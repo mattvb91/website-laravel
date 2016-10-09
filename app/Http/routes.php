@@ -45,4 +45,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
     Route::resource('article', 'Admin\ArticleController');
     Route::resource('tag', 'Admin\TagController');
     Route::resource('page', 'Admin\PageController');
+    Route::get('mailgun', ['as' => 'mailgun', 'uses' => 'Admin\MailgunController']);
+
 });

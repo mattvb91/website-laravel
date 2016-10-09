@@ -50,6 +50,7 @@
                             <li><a href="{{ url('/admin/article') }}">Articles</a></li>
                             <li><a href="{{ url('/admin/page') }}">Pages</a></li>
                             <li><a href="{{ url('/admin/tag') }}">Tags</a></li>
+                            <li><a href="{{ url('/admin/mailgun') }}">Mailgun</a></li>
 
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
