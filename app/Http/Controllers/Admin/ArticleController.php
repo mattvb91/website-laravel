@@ -8,10 +8,20 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 
 class ArticleController extends \App\Http\Controllers\ArticleController
 {
+
+    /**
+     * ArticleController constructor.
+     */
+    public function __construct()
+    {
+        //TODO abstract down to a better place
+        View::share('admin_view', true);
+    }
 
     /**
      * Override index here because we want every article in the system

@@ -6,9 +6,19 @@ use App\Http\Requests\TagRequest;
 use App\Models\Tag;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\View;
 
 class TagController extends \App\Http\Controllers\TagController
 {
+
+    /**
+     * ArticleController constructor.
+     */
+    public function __construct()
+    {
+        //TODO abstract down to a better place
+        View::share('admin_view', true);
+    }
 
     /**
      * Display a listing of the resource.

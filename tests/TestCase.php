@@ -2,6 +2,9 @@
 
 namespace Test;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Session;
+
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -24,4 +27,14 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function createUserAndLogin()
+    {
+        $password = str_random(6);
+
+        $user = factory(User::class)->create(['password' => bcrypt($password)]);
+        $this->post('/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
+            ->see('<title>Redirecting to http://localhost/admin/article</title>');
+    }
+
 }

@@ -20,12 +20,20 @@
 
         @include('errors.list')
 
-        <div class="col-md-9">
-            @yield('content')
+        @if(empty($admin_view))
+            <div class="col-md-9">
+        @else
+            <div class="col-md-12">
+        @endif
+
+        @yield('content')
         </div>
-        <div class="col-md-3">
-            @include('partials.sidebar')
-        </div>
+
+        @if(empty($admin_view))
+            <div class="col-md-3">
+                @include('partials.sidebar')
+            </div>
+        @endif
 
         <footer>
 

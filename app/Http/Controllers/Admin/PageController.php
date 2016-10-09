@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
 {
+
+    /**
+     * ArticleController constructor.
+     */
+    public function __construct()
+    {
+        //TODO abstract down to a better place
+        View::share('admin_view', true);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -83,7 +94,7 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

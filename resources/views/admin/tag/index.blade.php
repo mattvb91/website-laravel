@@ -22,8 +22,10 @@
                     </a>
                 </td>
                 <td>
+                    {{ $tag->slug }}
                 </td>
                 <td>
+                    {{ $tag->articles()->count() }}
                 </td>
             </tr>
         @endforeach

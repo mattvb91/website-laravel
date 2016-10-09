@@ -43,13 +43,4 @@ class AuthTest extends TestCase
         $this->get('/admin/article/' . $article->getKey() . '/edit')
             ->assertResponseStatus(302);
     }
-
-    private function createUserAndLogin()
-    {
-        $password = str_random(6);
-
-        $user = factory(User::class)->create(['password' => bcrypt($password)]);
-        $this->post('/login', ['email' => $user->getEmail(), 'password' => $password, '_token' => Session::token()])
-            ->see('<title>Redirecting to http://localhost/admin/article</title>');
-    }
 }
